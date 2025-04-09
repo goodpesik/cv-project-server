@@ -56,7 +56,6 @@ export class ExperienceModel {
     @Prop() country: string;
     @Prop() role: string;
     @Prop() description: string;
-    @Prop() descriptionList: string[];
 }
 
 @Schema({ _id: false }) 
@@ -68,6 +67,11 @@ export class HobbyModel {
 export class SkillModel {
     @Prop() name: string;
     @Prop() level: number;
+}
+
+@Schema({ _id: false }) 
+export class CertificationsModel {
+    @Prop() details: string;
 }
   
   
@@ -87,6 +91,8 @@ export class SkillModel {
     @Prop({ type: [Object] }) education?: EducationModel[];
   
     @Prop({ type: [Object] }) hobby?: HobbyModel[];
+
+    @Prop({ type: [Object] }) certifications?: CertificationsModel[];
   
     @Prop() positionDescription?: string;
   
