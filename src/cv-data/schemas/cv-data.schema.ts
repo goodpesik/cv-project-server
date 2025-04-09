@@ -22,6 +22,12 @@ export class CVData {
   @Prop()
   imageUrl: string;
 
+  @Prop()
+  firstName: string;
+
+  @Prop()
+  lastName: string;
+
   @Prop({
     type: [mongoose.Schema.Types.ObjectId],
     ref: 'User',
