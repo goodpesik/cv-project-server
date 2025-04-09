@@ -5,6 +5,7 @@ import * as puppeteer from 'puppeteer';
 export class PdfService {
   async generatePdfFromUrl(url: string): Promise<Buffer> {
     const browser = await puppeteer.launch({
+      executablePath: '/usr/bin/chromium-browser',
       headless: true,
     });
 
