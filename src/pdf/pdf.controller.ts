@@ -11,7 +11,6 @@ export class PdfController {
     if (!url) {
       return res.status(400).json({ error: 'URL is required' });
     }
-    console.log(1111, url);
     
     const pdfBuffer = await this.pdfService.generatePdfFromUrl(url);
 
