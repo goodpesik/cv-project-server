@@ -15,7 +15,7 @@ import { ConfigModule } from '@nestjs/config';
       envFilePath: '.env',
     }),
     CvDataModule,
-    MongooseModule.forRoot('mongodb://localhost/nest'),
+    MongooseModule.forRoot(process.env.MONGODB_URI),
     PdfModule,
     UsersModule
   ],

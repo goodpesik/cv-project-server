@@ -21,33 +21,14 @@ export class UserService {
     return this.userModel.find().exec();
   }
 
-  findOne(id: string): Promise<User>  {
-    return this.userModel.find({ uiid: id }).exec()[0];
+  findOne(id: string): Promise<User[]>  {
+    return this.userModel.find({ uiid: id }).exec();
   }
 
   update(id: string, user: User) {
     return this.userModel.updateOne({ id }, { $set: user }).exec();
   }
 
-  async populateItems(id: string) {
-    return await this.userModel.findById(id).populate('items').exec();
-  }
-
-  async addItemToUser(userId: string, itemId: string): Promise<User> {
-    return await this.userModel.findByIdAndUpdate(
-      userId,
-      { $push: { items: itemId } },
-      { new: true }
-    );
-  }
-
-  async removeItemFromUser(userId: string, itemId: string): Promise<User> {
-    return await this.userModel.findByIdAndUpdate(
-      userId,
-      { $pull: { items: itemId } },
-      { new: true }
-    );
-  }
 
   remove(id: string) {
     return this.userModel.deleteOne({ id }).exec();

@@ -1,35 +1,38 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Item } from './schemas/item.schema';
-import { Model, UpdateWriteOpResult } from 'mongoose';
-import { ItemModel } from './models/item.model';
+import { Model } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
+import { CVData } from './schemas/cv-data.schema';
 
 @Injectable()
 export class CvDataService {
-  constructor(@InjectModel(Item.name) private itemModel: Model<Item>) {}
+  constructor(@InjectModel(CVData.name) private CVDataModel: Model<CVData>) {}
 
-  async create(item: ItemModel): Promise<Item> {
-    const createdItem = new this.itemModel({
+  async create(data: CVData): Promise<CVData> {
+    const createdItem = new this.CVDataModel({
+      ...data,
       id: uuidv4(),
-      ...item,
     });
     return createdItem.save();
   }
 
-  async findAll(): Promise<Item[]> {
-    return this.itemModel.find().exec();
+  async findAll(userId: string): Promise<CVData[]> {
+    return this.CVDataModel.find({ createdBy: userId}).exec();
   }
 
-  findOne(id: string): Promise<Item> {
-    return this.itemModel.findById(id).exec();
+  findOne(id: string): Promise<CVData> {
+    return this.CVDataModel.findById(id).exec();
   }
 
-  update(id: string, item: ItemModel) {
-    return this.itemModel.updateOne({ id }, { $set: item }).exec();
+  update(id: string, data: CVData) {
+    return this.CVDataModel.updateOne({ _id: id }, { $set: data }).exec();
+  }
+
+  patch(id: string, data: Partial<CVData>) {
+    return this.CVDataModel.findByIdAndUpdate({ _id: id }, { $set: data }).exec();
   }
 
   remove(id: string) {
-    return this.itemModel.deleteOne({ id }).exec();
+    return this.CVDataModel.deleteOne({ _id: id }).exec();
   }
 }

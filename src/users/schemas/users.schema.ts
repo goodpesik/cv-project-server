@@ -12,8 +12,6 @@ export class User {
     uiid: string;
     @Prop()
     name: string;
-    @Prop({ type: [mongoose.Schema.Types.ObjectId], ref: 'Item', default: []  })
-    items: Types.ObjectId[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

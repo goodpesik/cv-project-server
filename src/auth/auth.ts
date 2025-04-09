@@ -54,8 +54,14 @@ const config = () => {
                 this.accessDenied(req.url, res);
               }
             });
+        } else {
+          if (token === process.env.API_KEY) {
+            next();
+          } else {
+            this.accessDenied(req.url, res);
+          }
         }
-      } else {
+      }  else {
         this.accessDenied(req.url, res);
       }
     }
