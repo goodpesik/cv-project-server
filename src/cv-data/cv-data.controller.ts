@@ -22,8 +22,8 @@ export class CvDataController {
       },
     }),
   }))
-  async createPhoto(@UploadedFile() file: Express.Multer.File, @Query('cvId') cvId: string, @Query('isEdit') isEdit: boolean) {
-    if (isEdit) {
+  async createPhoto(@UploadedFile() file: Express.Multer.File, @Query('cvId') cvId: string, @Query('isEdit') isEdit: string) {
+    if (isEdit === 'true') {
       await this.cvDataService.patch(cvId, {
         imageName: file.filename,
         imageUrl: file.path
