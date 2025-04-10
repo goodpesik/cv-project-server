@@ -21,7 +21,7 @@ async function dumpMongo() {
 async function uploadToDrive() {
   console.log("☁️ Uploading dump to Google Drive...");
 
-  await execAsync(`rclone copy ${LOCAL_DUMP_PATH} ${GDRIVE_REMOTE} --drive-overwrite`);
+  await execAsync(`rclone copy ${LOCAL_DUMP_PATH} ${GDRIVE_REMOTE}`);
   
   console.log("✅ Upload complete.");
 }
