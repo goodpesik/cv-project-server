@@ -66,6 +66,11 @@ export class CvDataController {
     return this.cvDataService.findOne(id);
   }
 
+  @Get('view/:id')
+  getView(@Param('id') id: string) {
+    return this.cvDataService.findOne(id);
+  }
+
   @Put(':id')
   update(@Param('id') id: string, @Body() item: CVData) {
     return this.cvDataService.update(id, item);

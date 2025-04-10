@@ -32,7 +32,6 @@ const config = () => {
   
     use(req: Request, res: Response, next: (error?: any) => void) {
       const token = req.headers.authorization;
-  
       if (token && token !== '') {
         if (token.includes('Bearer ')) {
           this.defaultApp
@@ -55,7 +54,7 @@ const config = () => {
               }
             });
         } else {
-          if (token === process.env.API_KEY) {
+          if (token === process.env.API_KEY && req.originalUrl.includes('view')) {
             next();
           } else {
             this.accessDenied(req.url, res);
