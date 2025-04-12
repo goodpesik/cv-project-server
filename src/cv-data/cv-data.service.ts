@@ -16,8 +16,12 @@ export class CvDataService {
     return createdItem.save();
   }
 
-  async findAll(userId: string): Promise<CVData[]> {
+  async findAllByUser(userId: string): Promise<CVData[]> {
     return this.CVDataModel.find({ createdBy: userId}).exec();
+  }
+
+  async findAll(): Promise<CVData[]> {
+    return this.CVDataModel.find().exec();
   }
 
   findOne(id: string): Promise<CVData> {

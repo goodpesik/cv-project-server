@@ -26,6 +26,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/mongoose": "^11.0.3",
     "@nestjs/platform-express": "^11.0.12",
+    "@nestjs/schedule": "^5.0.1",
     "firebase-admin": "^13.2.0",
     "mailparser": "^3.7.2",
     "mhtml2html": "^3.0.0",

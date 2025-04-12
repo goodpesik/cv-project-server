@@ -34,7 +34,7 @@ export class CvDataController {
 
   @Delete('photo/:filename')
   async deletePhoto(@Param('filename') filename: string, @Query('cvId') cvId: string, @Query('isEdit') isEdit: boolean) {
-    const filePath = join(__dirname, '.', 'uploads', filename);
+    const filePath = join(__dirname, '..', '..', 'uploads', filename);
     try {
       await fs.promises.unlink(filePath);
       if (isEdit) {
@@ -58,7 +58,7 @@ export class CvDataController {
 
   @Get('all/:id')
   findAll(@Param('id') userId: string) {
-    return this.cvDataService.findAll(userId);
+    return this.cvDataService.findAllByUser(userId);
   }
 
   @Get(':id')

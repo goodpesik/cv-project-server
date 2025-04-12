@@ -7,6 +7,8 @@ import { PdfModule } from './pdf/pdf.module';
 import { UsersModule } from './users/users.module';
 import { PreauthMiddleware } from './auth/auth';
 import { ConfigModule } from '@nestjs/config';
+import { TasksService } from './tasks.service';
+import { CvDataService } from './cv-data/cv-data.service';
 
 @Module({
   imports: [
@@ -20,7 +22,7 @@ import { ConfigModule } from '@nestjs/config';
     UsersModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, TasksService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
