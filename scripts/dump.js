@@ -7,7 +7,7 @@ const MONGO_CONTAINER = "6c465043ec79";
 const DUMP_NAME = "dump.archive";
 const LOCAL_DUMP_PATH = `~/tmp/${DUMP_NAME}`;
 const GDRIVE_REMOTE = "goodpesyk-drive:MongoBackups";
-const today = Date.now();
+const today = new Date();
 async function dumpMongo() {
   console.log(`${today}`, "📦 Creating MongoDB dump...");
 
