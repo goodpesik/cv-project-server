@@ -15,7 +15,7 @@ export class TasksService implements OnModuleInit {
 
   @Cron('0 3 * * *')
   async handleCleanup() {
-    console.log(`${new Date()}: Started Clean UP`)
+    console.log(`${Date.now()}: Started Clean UP`)
     const images = (await this.service.findAll()).map((cv => cv.imageName));
 
     if (!fs.existsSync(this.imagesPath)) {
