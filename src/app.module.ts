@@ -20,7 +20,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     MongooseModule.forRoot(process.env.MONGODB_URI),
     PdfModule,
     UsersModule,
-    ScheduleModule
+    ScheduleModule.forRoot()
   ],
   controllers: [AppController],
   providers: [AppService, TasksService],
