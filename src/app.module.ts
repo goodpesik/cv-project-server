@@ -8,7 +8,7 @@ import { UsersModule } from './users/users.module';
 import { PreauthMiddleware } from './auth/auth';
 import { ConfigModule } from '@nestjs/config';
 import { TasksService } from './tasks.service';
-import { CvDataService } from './cv-data/cv-data.service';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -19,7 +19,8 @@ import { CvDataService } from './cv-data/cv-data.service';
     CvDataModule,
     MongooseModule.forRoot(process.env.MONGODB_URI),
     PdfModule,
-    UsersModule
+    UsersModule,
+    ScheduleModule
   ],
   controllers: [AppController],
   providers: [AppService, TasksService],
