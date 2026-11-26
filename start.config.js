@@ -1,3 +1,13 @@
+const fs = require('fs');
+
+// Mongo runs with auth; the connection string with credentials lives outside the repo.
+function readMongoUri() {
+  const file = '/home/goodpesyk/.config/claude-secrets/mongodb.env';
+  const line = fs.readFileSync(file, 'utf8').split('\n').find((l) => l.startsWith('CV_MONGODB_URI='));
+  if (!line) throw new Error('CV_MONGODB_URI is missing in ' + file);
+  return line.slice('CV_MONGODB_URI='.length).trim();
+}
+
 module.exports = {
   apps: [
     {
@@ -15,7 +25,7 @@ module.exports = {
         FIREBASE_AUTH_PROVIDER_X509_CERT_URL: 'https://www.googleapis.com/oauth2/v1/certs',
         FIREBASE_CLIENT_X509_CERT_URL: 'https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40cv-project-g.iam.gserviceaccount.com',
         FIREBASE_UNIVERSE_DOMAIN: 'googleapis.com',
-        MONGODB_URI: "mongodb://localhost/cvproject",
+        MONGODB_URI: readMongoUri(),
         API_KEY: "c61a0c6d-1448-4302-b216-e00f980b7f23"
       }
     }
